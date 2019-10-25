@@ -12,3 +12,8 @@ others/        其他<br/>
 # others目录包含的代码
 闭包<br/>
 装饰器--decorator.py<br/>
+
+# img目录
+PlanA.png:<br/>
++ 网络通讯图
++ 装饰器实现思路原理
