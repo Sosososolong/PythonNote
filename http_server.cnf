@@ -1,4 +1,4 @@
 {
-    "static_path": "./static",
-    "dynamic_path": "./dynamic"
+    "static_path": "./static/",
+    "dynamic_path": "./dynamic/"
 }
