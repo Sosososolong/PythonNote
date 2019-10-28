@@ -28,9 +28,9 @@ class WSGIServer(object):
         # ...
         request = new_socket.recv(1024).decode("utf-8")
         request_lines = request.splitlines()
-        print("")
-        print(">" * 20)
-        print(request_lines)
+        # print("")
+        # print(">" * 20)
+        # print(request_lines)
 
         # GET /index.html HTTP/1.1
         file_name = ""
@@ -42,11 +42,14 @@ class WSGIServer(object):
 
         # 2 返回http格式的数据给浏览器
         # 2.1 如果请求的资源不是以.py结尾，那么就认为是静态资源
-        if not file_name.endswith('.py'):
+        if not file_name.endswith('.html'):
             try:
                 f = open(self.static_path + file_name, "rb")
             except:
                 response = "HTTP/1.1 404 NOT FOUND\r\n"
+                print("*"*20)
+                print(self.static_path)
+                print(file_name)
                 response += "\r\n"
                 response += "-------file not found-------"
                 new_socket.send(response.encode("utf-8"))
