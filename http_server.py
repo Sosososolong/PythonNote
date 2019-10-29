@@ -47,9 +47,6 @@ class WSGIServer(object):
                 f = open(self.static_path + file_name, "rb")
             except:
                 response = "HTTP/1.1 404 NOT FOUND\r\n"
-                print("*"*20)
-                print(self.static_path)
-                print(file_name)
                 response += "\r\n"
                 response += "-------file not found-------"
                 new_socket.send(response.encode("utf-8"))
@@ -60,7 +57,6 @@ class WSGIServer(object):
                 # 2.返回HTTP格式的数据给浏览器
                 # 2.1 准备发送给浏览器的数据 -- header
                 response = "HTTP/1.1 200 OK\r\n"
-                response += "content-type:text/html;charset=utf-8\r\n"
                 response += "\r\n"
                 # 2.2 准备发送给浏览器的数据 -- body
 
