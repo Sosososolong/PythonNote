@@ -11,7 +11,9 @@ others/        其他<br/>
             
 # others目录包含的代码
 闭包<br/>
-装饰器--decorator.py<br/>
++ 装饰器 -- decorator.py<br/>
++ 元类 -- metaclass.py<br/>
++ ORM(通过元类实现) -- orm.py<br/>
 
 # img目录
 PlanA.png:<br/>
