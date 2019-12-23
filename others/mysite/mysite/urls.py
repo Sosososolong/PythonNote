@@ -19,6 +19,6 @@ from django.urls import include, path
 urlpatterns = [
     # Whenever Django encounters include(), it chops off whatever part of the URL matched up to that point
     # and sends the remaining string to the included URLconf for further processing
-    path('polls/', include('polls.urls')),
+    path('polls/', include(('polls.urls', 'polls'), namespace='polls')),
     path('admin/', admin.site.urls),
 ]
