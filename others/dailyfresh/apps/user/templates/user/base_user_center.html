@@ -1,6 +1,6 @@
 {# 用户中心3个页面 #}
 
-{% extends 'base_no_cart.html' %}
+{% extends 'user/base_no_cart.html' %}
 {% block title %}天天生鲜-用户中心{% endblock title %}
 {% block page_title %}用户中心{% endblock page_title %}
 {% block body %}
@@ -8,9 +8,9 @@
     <div class="left_menu_con clearfix">
         <h3>用户中心</h3>
         <ul>
-            <li><a href="user_center_info.html" class="active">· 个人信息</a></li>
-            <li><a href="user_center_order.html">· 全部订单</a></li>
-            <li><a href="user_center_site.html">· 收获地址</a></li>
+            <li><a href="{%url 'user:user'%}" class="{% if page == 'user' %} active {% endif %}">· 个人信息</a></li>
+            <li><a href="{% url 'user:order' %}" class="{% if page == 'order' %} active {% endif %}">· 全部订单</a></li>
+            <li><a href="{% url 'user:address' %}" class="{% if page == 'address' %} active {% endif %}">· 收获地址</a></li>
         </ul>
     </div>
     {# 用户中心右侧内容块 #}

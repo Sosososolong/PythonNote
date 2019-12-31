@@ -157,3 +157,6 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 # 安装了django-redis, 并配置好以上, 当程序中使用session存储数据的时候就会使用redis进行存储!
 # 可使用本地客户端连接: "redis-cli -h 192.168.1.111 -p6379" 目标redis服务器, 然后查看"select 9; keys *", 结果中应该有与浏览器中对应的session id值
+
+# 配置登录url地址
+LOGIN_URL = '/user/login'
