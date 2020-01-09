@@ -1,0 +1,70 @@
+项目中使用的redis, FastDFS搭建在centos7.x 的虚拟机中(192.168.1.111), 项目运行起来之前, 要先开启这些服务
+
+  redis安装在 /usr/local/redis/ 目中
+  1. 进入 /usr/local/redis/bin/ 目录
+  2. 启动服务 ./redis-server ./redis.conf
+
+  FastDFS默认安装, 服务启动程序在/usr/bin/ 目录下, 启动trackerd和storaged两个服务
+  sudo /usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf
+  sudo /usr/bin/fdfs_storaged /etc/fdfs/storage.conf
+
+
+  celery(进入项目根目录)
+  celery -A celery_tasks.tasks worker -l info
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+==================================
+
+
+查看服务
+ps aux|grep fdfs_storaged
+
+查看进程端口
+netstat -antp|grep fdfs
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+==================================
+全文检索/分词  haystack包需要有所改动
+
+1.创建 F:\python3_virtualenv\python3_django2_virtualenv\Lib\site-packages\haystack\backends\ChineseAnalyzer.py ---- start
+
+import jieba
+from whoosh.analysis import Tokenizer, Token
+
+
+class ChineseTokenizer(Tokenizer):
+    def __call__(self, value, positions=False, chars=False,
+                 keeporiginal=False, removestops=True,
+                 start_pos=0, start_char=0, mode='', **kwargs):
+        t = Token(positions, chars, removestops=removestops, mode=mode, **kwargs)
+
+        seglist = jieba.cut(value, cut_all=True)
+
+        for w in seglist:
+            t.original = t.text = w
+            t.boost = 1.0
+            if positions:
+                t.pos = start_pos + value.find(w)
+            if chars:
+                t.startchar = start_char + value.find(w)
+                t.endchar = start_char + value.find(w) + len(w)
+
+            yield t
+
+def ChineseAnalyzer():
+    return ChineseTokenizer()
+
+F:\python3_virtualenv\python3_django2_virtualenv\Lib\site-packages\haystack\backends\ChineseAnalyzer.py ---- end
+
+2.还是在这个haystack包目录下, 拷贝一份whoosh_backend.py命名为whoosh_cn_backend.py
+先导入     from .ChineseAnalyzer import ChineseAnalyzer
+然后将analyzer=StemmingAnalyzer()改为analyzer=ChineseAnalyzer()
+
+
+--------------------------------------------------------------------------------------------------------------------
+==================================

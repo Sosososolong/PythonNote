@@ -67,10 +67,10 @@ class RegisterView(View):
 
         # 校验邮箱
         if not re.match(r'^[a-z0-9][\w.\-]*@[a-z0-9\-]+(\.[a-z]{2,5}){1,2}$', email):
-            return render(request, 'register.html', {'errmsg': '邮箱格式不正确'})
+            return render(request, 'user/register.html', {'errmsg': '邮箱格式不正确'})
 
         if allow != 'on':
-            return render(request, 'register.html', {'errmsg': '请同意协议'})
+            return render(request, 'user/register.html', {'errmsg': '请同意协议'})
 
         # 校验用户名是否重复
         try:
@@ -261,7 +261,7 @@ class AddressView(LoginRequiredMixin, View):
 
         # 校验数据
         if not all([receiver, addr, phone]):
-            return render(request, 'user/user_center_site.html', {'errmsg':'数据不完整'})
+            return render(request, 'user/user_center_site.html', {'errmsg': '数据不完整'})
         # 校验手机号
         if not re.match(r'^1[3|4|5|7|8][0-9]{9}', phone):
             return render(request, 'user/user_center_site.html', {'errmsg': '手机格式不正确'})
