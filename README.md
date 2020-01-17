@@ -14,6 +14,7 @@ others/        其他<br/>
 + 装饰器 -- decorator.py<br/>
 + 元类 -- metaclass.py<br/>
 + ORM(通过元类实现) -- orm.py<br/>
++ django项目 dailyfresh -- dailyfresh/
 
 # img目录
 PlanA.png:<br/>
