@@ -12,3 +12,10 @@ class MyspiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
+
+class TencentItem(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+    title = scrapy.Field()
+    position = scrapy.Field()
+    publish_date = scrapy.Field()
