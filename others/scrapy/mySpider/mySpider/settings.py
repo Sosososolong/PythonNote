@@ -14,13 +14,22 @@ BOT_NAME = 'mySpider'
 SPIDER_MODULES = ['mySpider.spiders']
 NEWSPIDER_MODULE = 'mySpider.spiders'
 
-LOG_LEVEL = 'WARNING'
+# LOG_LEVEL = 'WARNING'
+# LOG_FILE = './log.txt'
+
+WEIBO_FILE = './weibo.html'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'mySpider (+http://www.yourdomain.com)'
+# USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:74.0) Gecko/20100101 Firefox/74.0'
+USER_AGENT = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1'
+
+# DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter" 
+# SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+# SCHEDULER_PERSIST = True
+# REDIS_URL = "redis:192.168.1.111:6379"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -47,9 +56,9 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'mySpider.middlewares.MyspiderSpiderMiddleware': 543,
-#}
+SPIDER_MIDDLEWARES = {
+   'mySpider.middlewares.MyspiderSpiderMiddleware': 543,
+}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
@@ -67,7 +76,8 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'mySpider.pipelines.MyspiderPipeline': 300,
-   'mySpider.pipelines.MyspiderPipeline1': 302,
+   'mySpider.pipelines.MyspiderPipelineTencent': 302,
+   'mySpider.pipelines.MyspiderPipelineTieba': 303,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

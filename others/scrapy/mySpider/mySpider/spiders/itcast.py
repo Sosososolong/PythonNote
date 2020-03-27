@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
-
+import logging
 
 class ItcastSpider(scrapy.Spider):
     name = 'itcast'
@@ -17,5 +17,5 @@ class ItcastSpider(scrapy.Spider):
             item["name"] = li.xpath(".//h3/text()").extract_first()
             item["title"] = li.xpath(".//h4/text()").extract_first()
             # print(item)
-
+            
             yield item  # 将item传入pipline(scrapy中存储数据的地方)            
